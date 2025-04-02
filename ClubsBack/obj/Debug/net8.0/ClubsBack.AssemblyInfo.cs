@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ClubsBack")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9cf7ae7a2283081158570db14f492a57648be3b2")]
 [assembly: System.Reflection.AssemblyProductAttribute("ClubsBack")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ClubsBack")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
