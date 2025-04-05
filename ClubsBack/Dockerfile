@@ -1,19 +1,24 @@
-# https://hub.docker.com/_/microsoft-dotnet
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /source
-
-# copy csproj and restore as distinct layers
-COPY *.sln .
-COPY ClubsBack/*.csproj ./ClubsBack/
-RUN dotnet restore
-
-# copy everything else and build app
-COPY ClubsBack/. ./ClubsBack/ 
-WORKDIR /source/ClubsBack
-RUN dotnet publish -c release -o /app --no-restore
-
-# final stage/image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+USER $APP_UID
 WORKDIR /app
-COPY --from=build /app ./
-ENTRYPOINT ["dotnet", "aspnetapp.dll"]
+EXPOSE 8080
+EXPOSE 8081
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+COPY ["ClubsBack/ClubsBack.csproj", "ClubsBack/"]
+RUN dotnet restore "./ClubsBack/ClubsBack.csproj"
+COPY . .
+WORKDIR "/src/ClubsBack"
+RUN dotnet build "./ClubsBack.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "./ClubsBack.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "ClubsBack.dll"]
+
