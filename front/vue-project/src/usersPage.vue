@@ -102,7 +102,10 @@ async function getClubs() {
   });
 }
 async function Delete(id) {
-  axios.delete(`https://localhost:7210/clubs/${id}`).then(function (res) {
+  let acsecc = localStorage.getItem("accessToken");
+  axios.delete(`https://localhost:7210/clubs/${id}`,{
+        headers: { Authorization: "Bearer " + acsecc },
+      }).then(function (res) {
     if (res) {
       getClubs();
     }
