@@ -8,12 +8,14 @@ import register from './register.vue'
 import clubs from './clubs.vue'
 import userpage from './usersPage.vue'
 import search from './Search.vue'
+import clubPage from './clubPage.vue'
 const routes = [
   { path: '/', component: login },
   { path: '/clubs', component: clubs },
   { path: '/register', component: register },
   { path: '/user', component: userpage },
-  { path: '/search', component: search }
+  { path: '/search', component: search },
+  { path: '/club-page', component: clubPage }
 ]
 const router = createRouter({
   history: createWebHistory(),

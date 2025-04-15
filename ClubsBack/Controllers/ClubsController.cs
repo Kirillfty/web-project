@@ -21,7 +21,7 @@ namespace ClubsBack.Controllers
         }
         [HttpPost]
         [Route("create")]
-        [Authorize]
+        //[Authorize]
         public ActionResult Post([FromBody] Clubs user)
         {
             if (_repository.CreateClub(user) == true)
