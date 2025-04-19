@@ -7,7 +7,7 @@ namespace ClubsBack.Repository
 
         public List<Clubs> Get();
 
-        public bool CreateClub(Clubs item);
+        public bool CreateClub(Clubs item,int userId);
 
         public bool Update(Clubs item);
 

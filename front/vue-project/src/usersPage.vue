@@ -125,11 +125,8 @@ async function getUser() {
     });
 }
 function Post() {
-  axios
-    .post("https://localhost:7210/clubs/create", {
-      title: title.value,
-      description: description.value,
-    })
+  let acsecc = localStorage.getItem("accessToken");
+  axios.post("https://localhost:7210/clubs/create", { title: title.value,description: description.value} , {headers: { Authorization: "Bearer " + acsecc }})
     .then(function (responce) {
       getClubs();
     });

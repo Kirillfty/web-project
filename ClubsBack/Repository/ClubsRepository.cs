@@ -11,13 +11,19 @@ namespace ClubsBack.Repository
         {
             _options = options;
         }
-        public bool CreateClub(Clubs item)
+        public bool CreateClub(Clubs item, int userId)
         {
             using (SqliteConnection conn = new SqliteConnection(_options.Connect))
             {
+
                 int result = conn.Execute("INSERT INTO Clubs (title, description) VALUES (@title, @description)", item);
                 if (result != 0)
                 {
+                    int clubId = conn.QuerySingle<int>("SELECT last_insert_rowid();");
+                    ClubsUsers clubs = new ClubsUsers {clubId = clubId,userId = userId,isAdmin = true };
+                        
+                    
+                    conn.Execute("INSERT INTO ClubsUsers (userId, clubId, isAdmin) VALUES (@userId, @clubId,@isAdmin)", clubs);
                     return true;
                 }
                 else
