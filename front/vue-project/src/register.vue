@@ -1,7 +1,7 @@
 <template>
 <div class="container">
     <div class="cont-login">   
-            <p @click="Goto()">go to Login</p>
+            <p @click="Goto()">Войти в аккаунт</p>
             <br>
 			<input type="text" v-model="Acc.firstName" class="input" placeholder="firstName">
             <br>
@@ -11,7 +11,9 @@
             <br>
             <input type="text" v-model="Acc.password" class="input" placeholder="password">
             <br>
-			<button @click="Registration()" class="sign">register</button>
+            <button v-show="Acc.nickName >= 2 && Acc.password >= 3 && Acc.firstName >= 2 && Acc.nickName >= 3" @click="Registration()" class="sign">Регистрация</button>
+
+		
     </div>
 </div>
 </template>

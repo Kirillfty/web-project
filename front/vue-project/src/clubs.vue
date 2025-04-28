@@ -7,6 +7,7 @@
             <p>{{club.title}}</p>
             <p>{{club.description}}</p>
           </div>
+          <button class="sign">Посмотреть</button>
         </div>
       </div>
     </div>

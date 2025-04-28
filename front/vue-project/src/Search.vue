@@ -2,14 +2,14 @@
   <div class="container">
     <div class="cont-login">
       <p id="info">Найдите пользователя по его id</p>
-      <input type="text" class="input" v-model="user" />
+      <input type="text" class="input" v-model="user1" />
       <button class="sign" @click="SearchUser()">Найти</button>
-      <div v-for="user in userData" :key="club" class="clubs">
+      <div class="clubs">
         <div class="club">
           <div>
-            <p>{{user.firstName}}</p>
-            <p>{{user.lastName}}</p>
-            <p>{{user.nickName}}</p>
+            <p>{{userData.firstName}}</p>
+            <p>{{userData.lastName}}</p>
+            <p>{{userData.nickName}}</p>
           </div>
         </div>
       </div>
@@ -27,6 +27,7 @@ function SearchUser(){
         console.log(responce.data);
         userData.value = responce.data;
         console.log('user '+userData);
+        
         return userData;
     })
 }
