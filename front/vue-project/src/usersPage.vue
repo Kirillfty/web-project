@@ -92,9 +92,7 @@ let description = ref("");
 let result = ref("");
 let userData = ref("");
 
-function goToClubs() {
-  router.push("/clubs");
-}
+
 async function getClubs() {
   await axios.get("https://localhost:7210/clubs").then(function (res) {
     console.log(res);

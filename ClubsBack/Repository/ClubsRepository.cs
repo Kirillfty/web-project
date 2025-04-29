@@ -86,7 +86,7 @@ namespace ClubsBack.Repository
         {
             using (SqliteConnection conn = new SqliteConnection(_options.Connect))
             {
-                return conn.QueryFirstOrDefault<Clubs>("SELECT * FROM Clubs WHERE id = @id", new { Id = id });
+                return conn.QueryFirstOrDefault<Clubs>("SELECT * FROM Clubs WHERE id = @id", new { id = id });
             }
         }
 
