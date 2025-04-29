@@ -7,7 +7,7 @@
             <p>{{club.title}}</p>
             <p>{{club.description}}</p>
           </div>
-          <button class="sign">Посмотреть</button>
+          <button class="sign" @click="GetClubId(club.id)">Посмотреть</button>
         </div>
       </div>
     </div>
@@ -45,19 +45,22 @@
 <script setup>
 import {ref,onMounted} from 'vue'
 import axios from 'axios'
+import { useRouter } from 'vue-router'
 let clubs = ref([])
-
+let router = useRouter();
 async function fetchData()
 {
-
    await axios.get('https://localhost:7210/clubs')
      .then(function (res) {
        console.log(res);
        return clubs.value = res.data;
 })
-
 }
-
+function GetClubId(id){
+    console.log(id);
+    localStorage.setItem('clubId',JSON.parse(id));
+    router.push('/club-page');
+}
 onMounted(async()=>{
   await fetchData();
 })

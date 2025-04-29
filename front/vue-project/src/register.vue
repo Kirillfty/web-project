@@ -11,7 +11,7 @@
             <br>
             <input type="text" v-model="Acc.password" class="input" placeholder="password">
             <br>
-            <button v-show="Acc.nickName >= 2 && Acc.password >= 3 && Acc.firstName >= 2 && Acc.nickName >= 3" @click="Registration()" class="sign">Регистрация</button>
+            <button @click="Registration()" class="sign">Регистрация</button>
 
 		
     </div>

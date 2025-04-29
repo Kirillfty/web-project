@@ -7,7 +7,7 @@
 			<br>
 			<input type="text" v-model="Account.password" class="input" placeholder="password">
 			<br>
-			<button v-show="Account.nickName >= 2 && Account.password >= 3" @click="Login()" class="sign">Вход</button>
+			<button @click="Login()" class="sign">Вход</button>
     </div>
 </div>
 </template>

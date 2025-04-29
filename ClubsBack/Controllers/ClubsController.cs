@@ -14,11 +14,28 @@ namespace ClubsBack.Controllers
         {
             _repository = usersRepository;
         }
+
         [HttpGet]
         public List<Clubs> Get()
         {
             return _repository.Get();
         }
+
+        [HttpGet("{id:int}")]
+        public ActionResult GetById([FromRoute] int id)
+        {
+            Clubs? result = _repository.GetById(id);
+
+            if (result == null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(result);
+            }
+        }
+
         [HttpPost]
         [Route("create")]
         [Authorize]
