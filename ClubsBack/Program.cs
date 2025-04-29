@@ -34,7 +34,7 @@ namespace ClubsBack
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             }));
-            builder.Services.AddTransient<IRepository<Users>, UsersRepository>();
+            builder.Services.AddTransient<IRepository<User>, UsersRepository>();
             builder.Services.AddTransient<IClubs, ClubsRepository>();
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {

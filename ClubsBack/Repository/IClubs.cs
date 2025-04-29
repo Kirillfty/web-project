@@ -3,16 +3,16 @@ namespace ClubsBack.Repository
 {
     public interface IClubs
     {
-        public Clubs? GetById(int id);
+        public Club? GetById(int id);
 
-        public List<Clubs> Get();
+        public List<Club> Get();
 
-        public bool CreateClub(Clubs item,int userId);
+        public bool CreateClub(Club item,int userId);
 
-        public bool Update(Clubs item);
+        public bool Update(Club item);
 
         public bool SignClub(int clubId,int userId);
-        bool CheckUserOwnClub(ClubsUsers item);
+        bool CheckUserOwnClub(ClubUser item);
 
         public bool ExitClub(int id);
         public bool Delete(int id);

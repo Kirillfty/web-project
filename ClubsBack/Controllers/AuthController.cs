@@ -12,9 +12,9 @@ namespace TwitterBackend.Controllers
     public class AuthController : ControllerBase
     {
         private readonly JwtCreator _jwtCreator;
-        private readonly IRepository<Users> _userRepository;
+        private readonly IRepository<User> _userRepository;
 
-        public AuthController(JwtCreator jwtCreator, IRepository<Users> userRepository)
+        public AuthController(JwtCreator jwtCreator, IRepository<User> userRepository)
         {
             _jwtCreator = jwtCreator;
             _userRepository = userRepository;
@@ -35,19 +35,19 @@ namespace TwitterBackend.Controllers
         {
             var users = _userRepository.Get();
 
-            var user = users.FirstOrDefault(u => u.nickName == loginRequest.NickName);
+            var user = users.FirstOrDefault(u => u.NickName == loginRequest.NickName);
 
             if (user == null)
                 return Unauthorized("Username is incorrect");
 
-            if (user.password != loginRequest.Password)
+            if (user.Password != loginRequest.Password)
                 return Unauthorized("Password is incorrect");
 
             string refreshToken = Guid.NewGuid().ToString();
             
-            _userRepository.SetRefreshToken(refreshToken, user.nickName);
+            _userRepository.SetRefreshToken(refreshToken, user.NickName);
 
-            string authToken = _jwtCreator.Create(user.Role,user.id);
+            string authToken = _jwtCreator.Create(user.Role,user.Id);
             
             return new TokenPair(authToken, refreshToken);
         }
@@ -64,13 +64,13 @@ namespace TwitterBackend.Controllers
         [HttpPost("register")]
         public ActionResult<TokenPair> Register([FromBody] RegisterRequest registerRequest)
         {
-            Users newUser = new()
+            User newUser = new()
             {
                 
-                nickName = registerRequest.NickName,
-                firstName = registerRequest.FirstName,
-                lastName = registerRequest.LastName,
-                password = registerRequest.Password,
+                NickName = registerRequest.NickName,
+                FirstName = registerRequest.FirstName,
+                LastName = registerRequest.LastName,
+                Password = registerRequest.Password,
                 Role = "user"
             };
             int? result = _userRepository.Insert(newUser);
@@ -78,13 +78,13 @@ namespace TwitterBackend.Controllers
             if (result == null)
                 return BadRequest("User cannot be created");
             
-            newUser.id = result.Value;
+            newUser.Id = result.Value;
 
             string refreshToken = Guid.NewGuid().ToString();
             
-            _userRepository.SetRefreshToken(refreshToken, newUser.nickName);
+            _userRepository.SetRefreshToken(refreshToken, newUser.NickName);
 
-            string authToken = _jwtCreator.Create(newUser.Role, newUser.id);
+            string authToken = _jwtCreator.Create(newUser.Role, newUser.Id);
             
             return new TokenPair(authToken, refreshToken);
         }
@@ -101,16 +101,16 @@ namespace TwitterBackend.Controllers
             
             string newRefreshToken = Guid.NewGuid().ToString();
             
-            _userRepository.SetRefreshToken(newRefreshToken, user.nickName);
+            _userRepository.SetRefreshToken(newRefreshToken, user.NickName);
 
-            string authToken = _jwtCreator.Create(user.Role, user.id);
+            string authToken = _jwtCreator.Create(user.Role, user.Id);
             
             return new TokenPair(authToken, newRefreshToken);
         }
 
         [Authorize]
         [HttpGet]
-        public ActionResult<List<Users>> GetAllUsers()
+        public ActionResult<List<User>> GetAllUsers()
         {
             return _userRepository.Get().ToList();
         }
