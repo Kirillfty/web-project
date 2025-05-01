@@ -1,25 +1,40 @@
 <template>
-    <div class="clubs">
-        <div class="club">
-          <img src="./assets/Без имени.png" class="logo" />
-          <div>
-            <p>{{ clubData.title }}</p>
-            <p>{{ clubData.description }}</p>
-          </div>
+    <div class="user-header">
+      <div class="logo">
+        <img src="./assets/user.png" alt="" class="logo" />
+      </div>
+      <div class="user-text">
+        <div id="header-club">
+          <p id="info">id: {{ clubData.id }}</p>
+          <br />
+          <p id="info">название: {{ clubData.title }}</p><br>
+          <p id="nick">создатель: пока не сделал</p>
+          <br>
         </div>
       </div>
+    </div>
+    <section>
+      <section class="club-description">
+          <p>
+            {{clubData.description}}
+          </p>
+      </section>
+      <section class="sign_up_club_form">
+        <button class="sign-club">Вступить</button>
+      </section>
+    </section>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 let clubData = ref('');
+let clubId = ref('');
 async function getDataClub() {
-    let clubId = ref('');
-    clubId = JSON.stringify(localStorage.getItem('clubId'));
-    console.log(clubId);
+    clubId.value = localStorage.getItem('clubId');
+    console.log(clubId.value);
 
-    axios.get('https://localhost:7210/clubs/',{id:clubId})
+    axios.get('https://localhost:7210/clubs/'+clubId.value)
         .then(function (res) {
             console.log(res.data);
             return clubData.value = res.data;
