@@ -11,7 +11,7 @@ namespace ClubsBack.Repository
         {
             _options = options;
         }
-        public bool CreateClub(Clubs item, int userId)
+        public bool CreateClub(Club item, int userId)
         {
             using (SqliteConnection conn = new SqliteConnection(_options.Connect))
             {
@@ -20,7 +20,7 @@ namespace ClubsBack.Repository
                 if (result != 0)
                 {
                     int clubId = conn.QuerySingle<int>("SELECT last_insert_rowid();");
-                    ClubsUsers clubs = new ClubsUsers {clubId = clubId,userId = userId,isAdmin = true };
+                    ClubUser clubs = new ClubUser {ClubId = clubId,UserId = userId,IsAdmin = true };
                         
                     
                     conn.Execute("INSERT INTO ClubsUsers (userId, clubId, isAdmin) VALUES (@userId, @clubId,@isAdmin)", clubs);
@@ -48,9 +48,9 @@ namespace ClubsBack.Repository
                 }
             }
         }
-        public bool CheckUserOwnClub(ClubsUsers item){
+        public bool CheckUserOwnClub(ClubUser item){
             using (SqliteConnection conn = new SqliteConnection(_options.Connect)) { 
-                ClubsUsers? result = conn.QueryFirstOrDefault<ClubsUsers>($"SELECT * FROM ClubsUsers WHERE clubId = @clubId AND userId = @userId AND isAdmin = @isAdmin",item);
+                ClubUser? result = conn.QueryFirstOrDefault<ClubUser>($"SELECT * FROM ClubsUsers WHERE clubId = @clubId AND userId = @userId AND isAdmin = @isAdmin",item);
                 if(result != null){
                     return true;
                 }
@@ -75,18 +75,18 @@ namespace ClubsBack.Repository
             }
         }
 
-        public List<Clubs> Get()
+        public List<Club> Get()
         {
             using (SqliteConnection conn = new SqliteConnection(_options.Connect)) { 
-                 return conn.Query<Clubs>("SELECT * FROM Clubs").ToList();
+                 return conn.Query<Club>("SELECT * FROM Clubs").ToList();
             }
         }
 
-        public Clubs? GetById(int id)
+        public Club? GetById(int id)
         {
             using (SqliteConnection conn = new SqliteConnection(_options.Connect))
             {
-                return conn.QueryFirstOrDefault<Clubs>("SELECT * FROM Clubs WHERE id = @id", new { id = id });
+                return conn.QueryFirstOrDefault<Club>("SELECT * FROM Clubs WHERE id = @id", new { id = id });
             }
         }
 
@@ -109,7 +109,7 @@ namespace ClubsBack.Repository
 
         }
 
-        public bool Update(Clubs item)
+        public bool Update(Club item)
         {
             using (SqliteConnection conn = new SqliteConnection(_options.Connect))
             {

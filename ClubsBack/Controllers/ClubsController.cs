@@ -16,7 +16,7 @@ namespace ClubsBack.Controllers
         }
 
         [HttpGet]
-        public List<Clubs> Get()
+        public List<Club> Get()
         {
             return _repository.Get();
         }
@@ -24,7 +24,7 @@ namespace ClubsBack.Controllers
         [HttpGet("{id:int}")]
         public ActionResult GetById([FromRoute] int id)
         {
-            Clubs? result = _repository.GetById(id);
+            Club? result = _repository.GetById(id);
 
             if (result == null)
             {
@@ -39,7 +39,7 @@ namespace ClubsBack.Controllers
         [HttpPost]
         [Route("create")]
         [Authorize]
-        public ActionResult Post([FromBody] Clubs club)
+        public ActionResult Post([FromBody] Club club)
         {
             var user = HttpContext.User.Identity.Name;
 
@@ -58,7 +58,7 @@ namespace ClubsBack.Controllers
         public ActionResult Delete([FromRoute] int id)
         {
             var user = HttpContext.User.Identity.Name;
-            ClubsUsers clubUsers = new ClubsUsers { userId = int.Parse(user), clubId = id, isAdmin = true };
+            ClubUser clubUsers = new ClubUser { UserId = int.Parse(user), ClubId = id, IsAdmin = true };
             if (_repository.CheckUserOwnClub(clubUsers))
             {
                 if (_repository.Delete(id) == true)

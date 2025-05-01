@@ -5,86 +5,95 @@ using Microsoft.AspNetCore.Http;
 
 namespace ClubsBack.Repository
 {
-    public class UsersRepository : IRepository<Users>
+    public class UsersRepository : IRepository<User>
     {
-        private readonly DBconnect _options;
-        public UsersRepository(DBconnect options)
+        private readonly ApplicationContext _context;
+        public UsersRepository(ApplicationContext context)
         {
-            _options = options;
+            _context = context;
         }
 
         public bool Delete(int id)
         {
-            using (SqliteConnection conn = new SqliteConnection(_options.Connect)) {
-                int result = conn.Execute("DELETE * FROM Users WHERE id = @id",new {id = id });
-                if (result != 0)
-                {
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            }
-        }
+            User? u = _context.Users.FirstOrDefault(u => u.Id == id);
 
-        public List<Users> Get() {
-            using (SqliteConnection conn = new SqliteConnection(_options.Connect)) {
-                return conn.Query<Users>("SELECT * FROM Users").ToList();
-            }
-        }
-
-        public Users? GetById(int id)
-        {
-            using (SqliteConnection conn = new SqliteConnection(_options.Connect))
+            if (u == null)
             {
-                return conn.QueryFirstOrDefault<Users>("SELECT * FROM Users WHERE id = @id", new { id = id });
+                return false;
             }
-        }
 
-        public int? Insert(Users item)
-        {
-            using (SqliteConnection conn = new SqliteConnection(_options.Connect))
+            _context.Users.Remove(u);
+            try
             {
-                int result = conn.Execute("INSERT INTO Users (firstName, lastName, nickName ,password,role) VALUES (@firstName, @lastName, @nickName,@password,@Role)", item);
-                if (result != 0)
-                {
-                   int id = conn.QuerySingle<int>("SELECT last_insert_rowid();");
-                    
-                    return id;
-                }
-                else {
-                    return null;
-                }
-            
+                _context.SaveChanges();
             }
-        }
-
-        public bool Update(Users item)
-        {
-            using (SqliteConnection conn = new SqliteConnection(_options.Connect))
+            catch (Exception e)
             {
-                int result = conn.Execute("UPDATE Users SET firstName = @firstName, lastName = @lastName, nickName = @nickName WHERE id = @id", item);
-
-                if (result != 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return false;
             }
+
+            return true;
         }
 
-        public bool SetRefreshToken(string refreshToken, string nickName)
+        public List<User> Get()
         {
-            using (var connection = new SqliteConnection(_options.Connect))
-            {
-                var result = connection.Execute($"UPDATE Users SET RefreshToken = @refreshToken where NickName = @nickName", new { nickName, refreshToken });
-                return result > 0;
-            }
+            return _context.Users.ToList();
         }
 
-        
+        public User? GetById(int id)
+        {
+            return _context.Users.FirstOrDefault(u => u.Id == id);
+
+        }
+
+        public int? Insert(User item)
+        {
+            _context.Users.Add(item);
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+            return item.Id;
+        }
+
+        public bool Update(User item)
+        {
+            _context.Users.Update(item);
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool SetRefreshToken(string refreshToken, int id)
+        {
+            User? r = _context.Users.FirstOrDefault(u => u.Id == id);
+
+            if (r == null)
+                return false;
+
+            r.RefreshToken = refreshToken;
+
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
+
+
     }
 }
