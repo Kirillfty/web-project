@@ -11,7 +11,7 @@ namespace ClubsBack.Repository
 
         public bool Update(Club item);
 
-        public bool SignClub(int clubId,int userId);
+        public bool SignClub(ClubUser item);
         bool CheckUserOwnClub(ClubUser item);
 
         public bool ExitClub(int id);
