@@ -9,13 +9,11 @@ namespace ClubsBack.Repository
     {
         private readonly ApplicationContext _context;
         private readonly DBconnect _options;
-        public ClubsRepository(DBconnect connect) {
+        public ClubsRepository(DBconnect connect,ApplicationContext context) {
             _options = connect;
-        }
-        public ClubsRepository(ApplicationContext context)
-        {
             _context = context;
         }
+        
         public bool CreateClub(Club item, int userId)
         {
             _context.Clubs.Add(item);
@@ -49,19 +47,7 @@ namespace ClubsBack.Repository
             return true;
         }
         public bool CheckUserOwnClub(ClubUser item){
-            using (SqliteConnection conn = new SqliteConnection(_options.Connect))
-            {
-                ClubUser? result = conn.QueryFirstOrDefault<ClubUser>($"SELECT * FROM ClubsUsers WHERE clubId = @clubId AND userId = @userId AND isAdmin = @isAdmin", item);
-                if (result != null)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-
-            }
+            return _context.ClubsUsers.Any(u => u.UserId == item.UserId && u.ClubId == item.ClubId && u.IsAdmin);
         }
         public bool ExitClub(int id)
         {

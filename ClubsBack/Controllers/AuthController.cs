@@ -45,7 +45,7 @@ namespace TwitterBackend.Controllers
 
             string refreshToken = Guid.NewGuid().ToString();
             
-            _userRepository.SetRefreshToken(refreshToken, user.NickName);
+            _userRepository.SetRefreshToken(refreshToken, user.Id);
 
             string authToken = _jwtCreator.Create(user.Role,user.Id);
             
@@ -82,7 +82,7 @@ namespace TwitterBackend.Controllers
 
             string refreshToken = Guid.NewGuid().ToString();
             
-            _userRepository.SetRefreshToken(refreshToken, newUser.NickName);
+            _userRepository.SetRefreshToken(refreshToken, newUser.Id);
 
             string authToken = _jwtCreator.Create(newUser.Role, newUser.Id);
             
@@ -101,7 +101,7 @@ namespace TwitterBackend.Controllers
             
             string newRefreshToken = Guid.NewGuid().ToString();
             
-            _userRepository.SetRefreshToken(newRefreshToken, user.NickName);
+            _userRepository.SetRefreshToken(newRefreshToken, user.Id);
 
             string authToken = _jwtCreator.Create(user.Role, user.Id);
             

@@ -2,6 +2,7 @@
 using ClubsBack.Entities;
 using ClubsBack.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using TwitterBackend;
@@ -27,6 +28,7 @@ namespace ClubsBack
             builder.Services.AddControllers();
 
             string conn = builder.Configuration.GetConnectionString("Default");
+            builder.Services.AddDbContext<ApplicationContext>(builder => builder.UseSqlite(conn));
             builder.Services.AddSingleton<DBconnect>(new DBconnect(conn));
             builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {

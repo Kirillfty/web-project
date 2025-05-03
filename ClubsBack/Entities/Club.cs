@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ClubsBack.Entities
 {
@@ -10,7 +11,6 @@ namespace ClubsBack.Entities
         public int Id { get; set; }
         public required string Title { get; set; }
         public required string Description { get; set; }
-
         public List<User> Users { get; set; }
     }
 }

@@ -36,14 +36,17 @@ namespace ClubsBack.Controllers
             }
         }
 
+
+        public record CreateClubRequest(string Title, string Description);
+
         [HttpPost]
         [Route("create")]
         [Authorize]
-        public ActionResult Post([FromBody] Club club)
+        public ActionResult Post([FromBody] CreateClubRequest request)
         {
             var user = HttpContext.User.Identity.Name;
 
-            if (_repository.CreateClub(club,int.Parse(user)) == true)
+            if (_repository.CreateClub(new Club { Title = request.Title, Description = request.Description},int.Parse(user)) == true)
             {
                 return Ok();
             }
@@ -78,9 +81,9 @@ namespace ClubsBack.Controllers
         }
         public record ClubId(int clubId, int userId);
         [HttpPost]
-        public ActionResult Signclub([FromBody] ClubId clubId)
+        public ActionResult Signclub([FromBody] ClubUser clubId)
         {
-            if (_repository.SignClub(clubId.clubId, clubId.userId) == true)
+            if (_repository.SignClub(clubId) == true)
             {
                 return Ok();
             }
