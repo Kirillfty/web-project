@@ -1,5 +1,4 @@
-﻿using System;
-using ClubsBack.Entities;
+﻿using ClubsBack.Entities;
 using Dapper;
 using Microsoft.Data.Sqlite;
 
@@ -7,53 +6,24 @@ namespace ClubsBack.Repository
 {
     public class ClubsRepository : IClubs
     {
-        private readonly ApplicationContext _context;
         private readonly DBconnect _options;
-        public ClubsRepository(DBconnect connect) {
-            _options = connect;
-        }
-        public ClubsRepository(ApplicationContext context)
+        public ClubsRepository(DBconnect options)
         {
-            _context = context;
+            _options = options;
         }
         public bool CreateClub(Club item, int userId)
         {
-            _context.Clubs.Add(item);
-            try {
-                _context.SaveChanges();
-            }
-            catch (Exception ex) {
-                return false;
-            }
-            return true;
-        }
-        public bool Delete(int id)
-        {
-            Club? club = _context.Clubs.FirstOrDefault(u => u.Id == id);
-
-            if (club == null)
-            {
-                return false;
-            }
-
-            _context.Clubs.Remove(club);
-            try
-            {
-                _context.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-
-            return true;
-        }
-        public bool CheckUserOwnClub(ClubUser item){
             using (SqliteConnection conn = new SqliteConnection(_options.Connect))
             {
-                ClubUser? result = conn.QueryFirstOrDefault<ClubUser>($"SELECT * FROM ClubsUsers WHERE clubId = @clubId AND userId = @userId AND isAdmin = @isAdmin", item);
-                if (result != null)
+
+                int result = conn.Execute("INSERT INTO Clubs (title, description) VALUES (@title, @description)", item);
+                if (result != 0)
                 {
+                    int clubId = conn.QuerySingle<int>("SELECT last_insert_rowid();");
+                    ClubUser clubs = new ClubUser {ClubId = clubId,UserId = userId,IsAdmin = true };
+                        
+                    
+                    conn.Execute("INSERT INTO ClubsUsers (userId, clubId, isAdmin) VALUES (@userId, @clubId,@isAdmin)", clubs);
                     return true;
                 }
                 else
@@ -63,61 +33,97 @@ namespace ClubsBack.Repository
 
             }
         }
+        public bool Delete(int id)
+        {
+            using (SqliteConnection conn = new SqliteConnection(_options.Connect))
+            {
+                int result = conn.Execute("DELETE FROM Clubs WHERE id = @id",new { id = id });
+                if (result != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        public bool CheckUserOwnClub(ClubUser item){
+            using (SqliteConnection conn = new SqliteConnection(_options.Connect)) { 
+                ClubUser? result = conn.QueryFirstOrDefault<ClubUser>($"SELECT * FROM ClubsUsers WHERE clubId = @clubId AND userId = @userId AND isAdmin = @isAdmin",item);
+                if(result != null){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+                
+            }
+        }
         public bool ExitClub(int id)
         {
-            ClubUser? c = _context.ClubsUsers.FirstOrDefault(u => u.Id == id);
-
-            if (c == null)
-                return false;
-
-            _context.ClubsUsers.Remove(c);
-
-            try {
-                _context.SaveChanges();
+            using (SqliteConnection conn = new SqliteConnection(_options.Connect)) { 
+                int result =  conn.Execute(@"DELETE FROM ClubUsers WHERE Id = @Id", new {Id = id});
+                if (result != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-
-            catch (Exception ex) {
-                return false;
-            }
-
-            return true;
         }
 
         public List<Club> Get()
         {
-            return _context.Clubs.ToList();
+            using (SqliteConnection conn = new SqliteConnection(_options.Connect)) { 
+                 return conn.Query<Club>("SELECT * FROM Clubs").ToList();
+            }
         }
 
         public Club? GetById(int id)
         {
-            return _context.Clubs.FirstOrDefault(u => u.Id == id);
+            using (SqliteConnection conn = new SqliteConnection(_options.Connect))
+            {
+                return conn.QueryFirstOrDefault<Club>("SELECT * FROM Clubs WHERE id = @id", new { id = id });
+            }
         }
 
-        public bool SignClub(ClubUser item)
+        public bool SignClub(int clubId, int userId)
         {
-            _context.ClubsUsers.Add(item);
-            try {
-                _context.SaveChanges();
-            }
-            catch (Exception ex) {
-                return false;
+            using (SqliteConnection conn = new SqliteConnection(_options.Connect))
+            {
+                int result = conn.Execute("INSERT INTO ClubsUsers (clubId, userId) VALUES (@clubId, @userId)", new { clubId, userId });
+
+                if (result != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                
             }
 
-            return true;
         }
 
         public bool Update(Club item)
         {
-            _context.Clubs.Update(item);
+            using (SqliteConnection conn = new SqliteConnection(_options.Connect))
+            {
+                int result = conn.Execute("UPDATE Clubs SET title = @title, description = @description WHERE id = @id", item);
 
-            try {
-                _context.SaveChanges();
+                if (result != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            catch (Exception ex) {
-                return false;
-            }
-
-            return true;
         }
     }
 }
