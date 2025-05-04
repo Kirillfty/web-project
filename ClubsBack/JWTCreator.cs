@@ -3,7 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using ClubsBack;
 
-namespace TwitterBackend
+namespace ClubsBack
 {
     public class JwtCreator
     {

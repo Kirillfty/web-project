@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 
-namespace TwitterBackend.Controllers
+namespace ClubsBack.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

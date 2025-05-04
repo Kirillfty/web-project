@@ -3,9 +3,8 @@ using ClubsBack.Entities;
 using ClubsBack.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using TwitterBackend;
+
 
 namespace ClubsBack
 {
