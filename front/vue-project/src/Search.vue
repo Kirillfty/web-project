@@ -3,12 +3,12 @@
     <div class="cont-login">
       <p id="info">Найдите пользователя по его id</p>
       <input type="text" class="input" v-model="user" />
-      <button class="sign" @click="SearchUser()">Найти</button>
-      <div class="clubs">
-        <div class="club">
+      <button class="btn" @click="SearchUser()">Найти</button>
+      <div class="clubs-container">
+        <div class="clubs" id="card">
           <img src="./assets/user.png" alt="" class="logo">
           <div>
-            <p>{{userData.firstName}}</p>
+            <p class="heading">{{userData.firstName}}</p>
             <p>{{userData.lastName}}</p>
             <p>{{userData.nickName}}</p>
           </div>

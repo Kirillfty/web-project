@@ -1,23 +1,13 @@
 <template>
-    <div>
-      <div v-for="club in clubs" :key="club" class="clubs">
-        <div class="club">
-          <img src="./assets/Без имени.png" class="logo-id">
-          <div>
-            <p>{{club.title}}</p>
-            <p>{{club.description}}</p>
-          </div>
-          <button class="sign" @click="GetClubId(club.id)">Посмотреть</button>
-        </div>
+    <div class="clubs-container">
+      <div id="card" v-for="club in clubs" :key="club" class="clubs">
+        <p class="heading">{{club.title}}</p>
+        <p>{{club.description}}</p>
+        <button class="btn" @click="GetClubId(club.id)">Посмотреть</button>
       </div>
     </div>
-    
 </template>
 <style scoped>
-/* img{
-  width:20%;
-  height:5vh;
-} */
 .logo-id{
   width:10vh;
   height:10vh;

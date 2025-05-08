@@ -29,19 +29,16 @@
           class="input"
           placeholder="краткое описание"
         />
-        <button @click="Post()" class="sign">click</button>
+        <button @click="Post()" class="btn">click</button>
       </div>
 
-      <div v-for="club in clubs" :key="club" class="clubs">
-        <div class="club">
-          <img src="./assets/Без имени.png" class="logo" />
-          <div>
-            <p>{{ club.title }}</p>
-            <p>{{ club.description }}</p>
-            <button @click="Delete(club.id)" class="sign">Delete</button>
-          </div>
-        </div>
+      <div class="clubs-container-user">
+      <div id="card" v-for="club in clubs" :key="club" class="clubs">
+        <p class="heading">{{club.title}}</p>
+        <p>{{club.description}}</p>
+        <button class="btn" @click="Delete(club.id)">Delete</button>
       </div>
+    </div>
     </div>
   </header>
 </template>
@@ -101,9 +98,7 @@ async function getClubs() {
 }
 async function Delete(id) {
   let acsecc = localStorage.getItem("accessToken");
-  axios.delete('https://localhost:7210/clubs/'+id,{
-        headers: { Authorization: "Bearer " + acsecc },
-      }).then(function (res) {
+  axios.delete('https://localhost:7210/clubs/'+id,{headers: { Authorization: "Bearer " + acsecc }}).then(function (res) {
     if (res) {
       getClubs();
     }

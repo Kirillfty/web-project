@@ -1,20 +1,30 @@
 <template>
-<div class="container">
-    <div class="cont-login">   
-            <p @click="Goto()">Войти в аккаунт</p>
-            <br>
-			<input type="text" v-model="Acc.firstName" class="input" placeholder="firstName">
-            <br>
-			<input type="text" class="input" placeholder="lastName" v-model="Acc.lastName">
-            <br>
-            <input type="text" class="input" placeholder="nickName" v-model="Acc.nickName">
-            <br>
-            <input type="text" v-model="Acc.password" class="input" placeholder="password">
-            <br>
-            <button @click="Registration()" class="sign">Регистрация</button>
+<div class="form">
+    <p class="title">Register </p>
+    <p class="message">Signup now and get full access to our app. </p>
+        <div class="flex">
+        <label>
+            <input class="input" type="text" placeholder="" required="" v-model="Acc.firstName">
+            <span>Firstname</span>
+        </label>
 
-		
-    </div>
+        <label>
+            <input class="input" type="text" placeholder="" required="" v-model="Acc.lastName">
+            <span>Lastname</span>
+        </label>
+    </div>  
+            
+    <label>
+        <input class="input" type="text" placeholder="" required="" v-model="Acc.nickName">
+        <span>nickName</span>
+    </label> 
+        
+    <label>
+        <input class="input" type="password" placeholder="" required="" v-model="Acc.password">
+        <span>Password</span>
+    </label>
+    <button class="submit" @click="Registration()">Submit</button>
+    <p class="signin" @click="Goto()">Already have an acount ? <a href="#">Signin</a> </p>
 </div>
 </template>
 

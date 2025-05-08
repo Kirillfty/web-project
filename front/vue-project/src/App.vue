@@ -5,26 +5,23 @@ import { RouterView } from 'vue-router';
 <style scoped>
 .aside{
    width:100%;
-   height:14vh;
+   height:10vh;
    background-color: rgb(20, 20, 20);
    display: flex;
    justify-content: space-around;
    position:fixed;
    align-items: center;
    bottom:0;
-   
+   z-index:3;
 }
 #link{
    color:aliceblue;
    text-decoration: none;
+   font-size: 12px;
 }
 .icon{
-   width:10vh;
-   height:10vh;
-}
-.icon1{
-   width:15vh;
-   height:10vh;
+   width:6vh;
+   height:6vh;
 }
 .icons{
   display: flex;

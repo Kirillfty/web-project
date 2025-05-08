@@ -1,42 +1,48 @@
 <template>
-<div class="container">
-	<div class="cont-login">
-			<p @click="GoTo()">Создать аккаунт</p>
-			<br>
-			<input type="text" v-model="Account.nickName" class="input" placeholder="nickName">
-			<br>
-			<input type="text" v-model="Account.password" class="input" placeholder="password">
-			<br>
-			<button @click="Login()" class="sign">Вход</button>
-    </div>
-</div>
+	<div class="form">
+		<p class="title">Sign in</p>
+		<p class="message">Signup now and get full access to our app.</p>
+		<label>
+			<input class="input" type="texxt" placeholder="" required="" v-model="Account.nickName" />
+			<span>nickName</span>
+		</label>
+
+		<label>
+			<input class="input" type="password" placeholder="" required="" v-model="Account.password" />
+			<span>Password</span>
+		</label>
+		<button class="submit" @click="Login()">Submit</button>
+		<p class="signin" @click="GoTo()">
+			Already have an acount ? <a href="#">Signin</a>
+		</p>
+	</div>
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
-import {ref}  from 'vue'
-import axios from 'axios'
+import { useRouter } from "vue-router";
+import { ref } from "vue";
+import axios from "axios";
 
 let Account = ref({
-	nickName:null,
-	password:null
-})
-function Login(){
-	axios.post('https://localhost:7210/api/auth/login',{nickName:Account.value.nickName,password:Account.value.password})
-	.then(function(res){
-		localStorage.clear();
-        localStorage.setItem('accessToken',res.data.accessToken);
-        localStorage.setItem('refreshToken',res.data.refreshToken);
-		console.log('ok');
-		router.push('/clubs')
-	})
+	nickName: null,
+	password: null,
+});
+function Login() {
+	axios
+		.post("https://localhost:7210/api/auth/login", {
+			nickName: Account.value.nickName,
+			password: Account.value.password,
+		})
+		.then(function (res) {
+			localStorage.clear();
+			localStorage.setItem("accessToken", res.data.accessToken);
+			localStorage.setItem("refreshToken", res.data.refreshToken);
+			console.log("ok");
+			router.push("/clubs");
+		});
 }
-let router = useRouter()
-function GoTo(){  
- router.push('/register');
+let router = useRouter();
+function GoTo() {
+	router.push("/register");
 }
- 
-
-
-
 </script>
