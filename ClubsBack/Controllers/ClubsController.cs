@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace ClubsBack.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ClubsController : ControllerBase
     {
-        private IClubs _repository;
-        public ClubsController(IClubs usersRepository)
+        private IClubsRepository _repository;
+        public ClubsController(IClubsRepository usersRepository)
         {
             _repository = usersRepository;
         }
@@ -60,6 +60,7 @@ namespace ClubsBack.Controllers
         [Authorize]
         public ActionResult Delete([FromRoute] int id)
         {
+
             var user = HttpContext.User.Identity.Name;
             ClubUser clubUsers = new ClubUser { UserId = int.Parse(user), ClubId = id, IsAdmin = true };
             if (_repository.CheckUserOwnClub(clubUsers))
@@ -79,26 +80,37 @@ namespace ClubsBack.Controllers
 
 
         }
-        public record ClubId(int clubId, int userId);
-        [HttpPost]
-        public ActionResult Signclub([FromBody] ClubUser clubId)
+        
+        [HttpPost("enter-club/{clubId:int}")]
+        public ActionResult EnterClub([FromRoute] int clubId)
         {
-            if (_repository.SignClub(clubId) == true)
+            var user = HttpContext.User.Identity.Name;
+
+            if (int.TryParse(user, out int userId) == false)
+                return BadRequest();
+
+
+            if (_repository.EnterClub(clubId, userId) == true)
             {
-                return Ok();
+                return NoContent();
             }
             else
             {
                 return BadRequest();
             }
         }
-        [HttpDelete("exit-club/{id:int}")]
 
-        public ActionResult ExitClubs([FromRoute] int id)
+        [HttpPost("exit-club/{clubId:int}")]
+        public ActionResult ExitClubs([FromRoute] int clubId)
         {
-            if (_repository.ExitClub(id) == true)
+            var user = HttpContext.User.Identity.Name;
+
+            if (int.TryParse(user, out int userId) == false)
+                return BadRequest();
+
+            if (_repository.ExitClub(clubId, userId) == true)
             {
-                return Ok();
+                return NoContent();
             }
             else
             {

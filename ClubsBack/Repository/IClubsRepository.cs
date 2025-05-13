@@ -1,7 +1,7 @@
 ﻿using ClubsBack.Entities;
 namespace ClubsBack.Repository
 {
-    public interface IClubs
+    public interface IClubsRepository
     {
         public Club? GetById(int id);
 
@@ -10,11 +10,9 @@ namespace ClubsBack.Repository
         public bool CreateClub(Club item,int userId);
 
         public bool Update(Club item);
-
-        public bool SignClub(ClubUser item);
         bool CheckUserOwnClub(ClubUser item);
-
-        public bool ExitClub(int id);
+        public bool EnterClub(int clubId, int userId);
+        public bool ExitClub(int clubId, int userId);
         public bool Delete(int id);
     }
 }

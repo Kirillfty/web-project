@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\vladi\\OneDrive\\\u0418\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\web-project\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D1599EC3-108D-4A72-89C0-E15BE9222631}|ClubsBack\\ClubsBack.csproj|c:\\users\\vladi\\onedrive\\\u0438\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\web-project\\clubsback\\repository\\clubsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1599EC3-108D-4A72-89C0-E15BE9222631}|ClubsBack\\ClubsBack.csproj|solutionrelative:clubsback\\repository\\clubsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1599EC3-108D-4A72-89C0-E15BE9222631}|ClubsBack\\ClubsBack.csproj|c:\\users\\vladi\\onedrive\\\u0438\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\web-project\\clubsback\\controllers\\clubscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1599EC3-108D-4A72-89C0-E15BE9222631}|ClubsBack\\ClubsBack.csproj|solutionrelative:clubsback\\controllers\\clubscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1599EC3-108D-4A72-89C0-E15BE9222631}|ClubsBack\\ClubsBack.csproj|c:\\users\\vladi\\onedrive\\\u0438\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\web-project\\clubsback\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1599EC3-108D-4A72-89C0-E15BE9222631}|ClubsBack\\ClubsBack.csproj|solutionrelative:clubsback\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1599EC3-108D-4A72-89C0-E15BE9222631}|ClubsBack\\ClubsBack.csproj|c:\\users\\vladi\\onedrive\\\u0438\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\web-project\\clubsback\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1599EC3-108D-4A72-89C0-E15BE9222631}|ClubsBack\\ClubsBack.csproj|solutionrelative:clubsback\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1599EC3-108D-4A72-89C0-E15BE9222631}|ClubsBack\\ClubsBack.csproj|c:\\users\\vladi\\onedrive\\\u0438\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\web-project\\clubsback\\repository\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1599EC3-108D-4A72-89C0-E15BE9222631}|ClubsBack\\ClubsBack.csproj|solutionrelative:clubsback\\repository\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\\u0418\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\web-project\\ClubsBack\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "ClubsBack\\Controllers\\UsersController.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\\u0418\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\web-project\\ClubsBack\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "ClubsBack\\Controllers\\UsersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T17:32:45.98Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\\u0418\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\web-project\\ClubsBack\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "ClubsBack\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\\u0418\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\web-project\\ClubsBack\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "ClubsBack\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAxwBYAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T17:32:40.862Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ClubsController.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\\u0418\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\web-project\\ClubsBack\\Controllers\\ClubsController.cs",
+              "RelativeDocumentMoniker": "ClubsBack\\Controllers\\ClubsController.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\\u0418\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\web-project\\ClubsBack\\Controllers\\ClubsController.cs",
+              "RelativeToolTip": "ClubsBack\\Controllers\\ClubsController.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAIwDAAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T17:28:29.538Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\\u0418\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\web-project\\ClubsBack\\Repository\\IRepository.cs",
+              "RelativeDocumentMoniker": "ClubsBack\\Repository\\IRepository.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\\u0418\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\web-project\\ClubsBack\\Repository\\IRepository.cs",
+              "RelativeToolTip": "ClubsBack\\Repository\\IRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T17:27:14.123Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ClubsRepository.cs",
+              "DocumentMoniker": "C:\\Users\\vladi\\OneDrive\\\u0418\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\web-project\\ClubsBack\\Repository\\ClubsRepository.cs",
+              "RelativeDocumentMoniker": "ClubsBack\\Repository\\ClubsRepository.cs",
+              "ToolTip": "C:\\Users\\vladi\\OneDrive\\\u0418\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B\\web-project\\ClubsBack\\Repository\\ClubsRepository.cs",
+              "RelativeToolTip": "ClubsBack\\Repository\\ClubsRepository.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAYwBYAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T17:06:41.562Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

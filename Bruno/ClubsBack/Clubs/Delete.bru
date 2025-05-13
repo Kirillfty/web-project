@@ -1,0 +1,19 @@
+meta {
+  name: Delete
+  type: http
+  seq: 2
+}
+
+delete {
+  url: {{base}}/clubs/{{clubId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJ1c2VyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6IjEiLCJleHAiOjE3NDcxNjEyNjksImlzcyI6IndlYl9hcGkiLCJhdWQiOiJ3ZWJfc2VydmljZSJ9.JA1GU2PXPG59eTQcE0iiLvdOmU5zau9yGWKC50J5QvQ
+}
+
+vars:pre-request {
+  clubId: 17
+}

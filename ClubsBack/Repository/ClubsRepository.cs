@@ -1,11 +1,9 @@
-﻿using System;
-using ClubsBack.Entities;
-using Dapper;
-using Microsoft.Data.Sqlite;
-
+﻿using ClubsBack.Entities;
+using Microsoft.EntityFrameworkCore;
+//AsNoTracking() add
 namespace ClubsBack.Repository
 {
-    public class ClubsRepository : IClubs
+    public class ClubsRepository : IClubsRepository
     {
         private readonly ApplicationContext _context;
         private readonly DBconnect _options;
@@ -14,15 +12,16 @@ namespace ClubsBack.Repository
             _context = context;
         }
         
-        public bool CreateClub(Club item, int userId)
+        public bool CreateClub(Club newClub, int userId)
         {
-            _context.Clubs.Add(item);
+            _context.Clubs.Add(newClub);
             try {
                 _context.SaveChanges();
             }
             catch (Exception ex) {
                 return false;
             }
+            //после создания клуба получай его Id, а создавай ClubUser с isAdmin = true
             return true;
         }
         public bool Delete(int id)
@@ -49,9 +48,36 @@ namespace ClubsBack.Repository
         public bool CheckUserOwnClub(ClubUser item){
             return _context.ClubsUsers.Any(u => u.UserId == item.UserId && u.ClubId == item.ClubId && u.IsAdmin);
         }
-        public bool ExitClub(int id)
+
+        public bool EnterClub(int clubId, int userId)
         {
-            ClubUser? c = _context.ClubsUsers.FirstOrDefault(u => u.Id == id);
+            var club = _context.Clubs.AsNoTracking().FirstOrDefault(c => c.Id == clubId);
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+
+            if (club == null || user == null) 
+                return false;
+
+            if (_context.ClubsUsers.Any(c => c.ClubId == club.Id && c.UserId == user.Id )) 
+                return false;
+
+            var newClubUser = new ClubUser {ClubId = club.Id,UserId = user.Id,IsAdmin = false};
+            _context.ClubsUsers.Add(newClubUser);
+
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool ExitClub(int clubId, int userId)
+        {
+            ClubUser? c = _context.ClubsUsers.FirstOrDefault(c => c.ClubId == clubId && c.UserId == userId);
 
             if (c == null)
                 return false;
@@ -79,18 +105,7 @@ namespace ClubsBack.Repository
             return _context.Clubs.FirstOrDefault(u => u.Id == id);
         }
 
-        public bool SignClub(ClubUser item)
-        {
-            _context.ClubsUsers.Add(item);
-            try {
-                _context.SaveChanges();
-            }
-            catch (Exception ex) {
-                return false;
-            }
-
-            return true;
-        }
+       
 
         public bool Update(Club item)
         {

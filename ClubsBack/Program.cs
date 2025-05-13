@@ -36,7 +36,7 @@ namespace ClubsBack
                        .AllowAnyHeader();
             }));
             builder.Services.AddTransient<IRepository<User>, UsersRepository>();
-            builder.Services.AddTransient<IClubs, ClubsRepository>();
+            builder.Services.AddTransient<IClubsRepository, ClubsRepository>();
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters

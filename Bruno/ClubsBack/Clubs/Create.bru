@@ -1,0 +1,22 @@
+meta {
+  name: Create
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base}}/clubs/create
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJ1c2VyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6IjEiLCJleHAiOjE3NDcxNjEyNjksImlzcyI6IndlYl9hcGkiLCJhdWQiOiJ3ZWJfc2VydmljZSJ9.JA1GU2PXPG59eTQcE0iiLvdOmU5zau9yGWKC50J5QvQ
+}
+
+body:json {
+  {
+    "Title": "Test",
+    "Description": "Testov"
+  }
+}
