@@ -21,6 +21,16 @@ namespace ClubsBack.Repository
             catch (Exception ex) {
                 return false;
             }
+
+            _context.ClubsUsers.Add(new ClubUser { ClubId = newClub.Id,UserId = userId,IsAdmin = true});
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
             //после создания клуба получай его Id, а создавай ClubUser с isAdmin = true
             return true;
         }
