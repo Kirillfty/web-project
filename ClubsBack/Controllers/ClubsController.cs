@@ -82,6 +82,7 @@ namespace ClubsBack.Controllers
         }
         
         [HttpPost("enter-club/{clubId:int}")]
+        [Authorize]
         public ActionResult EnterClub([FromRoute] int clubId)
         {
             var user = HttpContext.User.Identity.Name;
@@ -101,6 +102,7 @@ namespace ClubsBack.Controllers
         }
 
         [HttpPost("exit-club/{clubId:int}")]
+        [Authorize]
         public ActionResult ExitClubs([FromRoute] int clubId)
         {
             var user = HttpContext.User.Identity.Name;
@@ -118,7 +120,8 @@ namespace ClubsBack.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("get-my-clubs")]
+        [Authorize]
         public ActionResult<List<Club>> GetUserClub() {
 
             var userId = HttpContext.User.Identity.Name;
