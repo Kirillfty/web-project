@@ -40,7 +40,7 @@ let clubs = ref([])
 let router = useRouter();
 async function fetchData()
 {
-   await axios.get('https://localhost:7210/clubs')
+   await axios.get('https://localhost:7210/api/clubs')
      .then(function (res) {
        console.log(res);
        return clubs.value = res.data;

@@ -34,7 +34,7 @@ async function getDataClub() {
     clubId.value = localStorage.getItem('clubId');
     console.log(clubId.value);
 
-    axios.get('https://localhost:7210/clubs/'+clubId.value)
+    axios.get('https://localhost:7210/api/clubs/'+clubId.value)
         .then(function (res) {
             console.log(res.data);
             return clubData.value = res.data;

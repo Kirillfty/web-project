@@ -14,5 +14,6 @@ namespace ClubsBack.Repository
         public bool EnterClub(int clubId, int userId);
         public bool ExitClub(int clubId, int userId);
         public bool Delete(int id);
+        public List<Club> GetUserClub(int userId);
     }
 }

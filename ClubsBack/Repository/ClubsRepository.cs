@@ -1,4 +1,5 @@
 ﻿using ClubsBack.Entities;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 //AsNoTracking() add
 namespace ClubsBack.Repository
@@ -129,6 +130,11 @@ namespace ClubsBack.Repository
             }
 
             return true;
+        }
+        
+        public List<Club> GetUserClub(int userId)
+        {
+           return _context.ClubsUsers.Where(u => u.Id == userId && u.IsAdmin == true).Select(club => club.Club).ToList();
         }
     }
 }

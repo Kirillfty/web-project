@@ -91,14 +91,14 @@ let userData = ref("");
 
 
 async function getClubs() {
-  await axios.get("https://localhost:7210/clubs").then(function (res) {
+  await axios.get("https://localhost:7210/api/clubs").then(function (res) {
     console.log(res);
     return (clubs.value = res.data);
   });
 }
 async function Delete(id) {
   let acsecc = localStorage.getItem("accessToken");
-  axios.delete('https://localhost:7210/clubs/'+id,{headers: { Authorization: "Bearer " + acsecc }}).then(function (res) {
+  axios.delete('https://localhost:7210/api/clubs/'+id,{headers: { Authorization: "Bearer " + acsecc }}).then(function (res) {
     if (res) {
       getClubs();
     }
@@ -119,7 +119,7 @@ async function getUser() {
 }
 function Post() {
   let acsecc = localStorage.getItem("accessToken");
-  axios.post("https://localhost:7210/clubs/create", { title: title.value,description: description.value} , {headers: { Authorization: "Bearer " + acsecc }})
+  axios.post("https://localhost:7210/api/clubs/create", { title: title.value,description: description.value} , {headers: { Authorization: "Bearer " + acsecc }})
     .then(function (responce) {
       getClubs();
     });

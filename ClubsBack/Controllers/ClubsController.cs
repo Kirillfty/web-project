@@ -117,5 +117,18 @@ namespace ClubsBack.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpGet]
+        public ActionResult<List<Club>> GetUserClub() {
+
+            var userId = HttpContext.User.Identity.Name;
+            if (int.TryParse(userId, out int resultId) == false) 
+                return BadRequest();
+            
+            return _repository.GetUserClub(resultId);
+
+
+            
+        }
     }
 }
