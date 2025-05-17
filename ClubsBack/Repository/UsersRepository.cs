@@ -99,6 +99,12 @@ namespace ClubsBack.Repository
             return true;
         }
 
-
+        public List<User> GetUsersInClub(int clubId)
+        {
+            return _context.ClubsUsers
+                .Where(u => u.ClubId == clubId)
+                .Select(u => u.User)
+                .ToList();
+        }
     }
 }

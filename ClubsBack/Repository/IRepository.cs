@@ -19,5 +19,6 @@ namespace ClubsBack.Repository
         //получение всех
         public List<Item> Get();
         bool SetRefreshToken(string refreshToken, int id);
+        public List<User> GetUsersInClub(int clubId);
     }
 }

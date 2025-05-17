@@ -140,11 +140,6 @@ namespace ClubsBack.Repository
                .ToList();
         }
 
-        public List<User> GetUsersInClub(int clubId)
-        {
-            return _context.ClubsUsers
-                .Where(u => u.Id == clubId)
-                .ToList();
-        }
+       
     }
 }

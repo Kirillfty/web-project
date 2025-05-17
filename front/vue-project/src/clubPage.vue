@@ -20,7 +20,7 @@
           </p>
       </section>
       <section class="sign_up_club_form">
-        <button class="submit">Вступить</button>
+        <button class="submitb">Вступить</button>
       </section>
     </section>
 </template>
