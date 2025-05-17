@@ -91,7 +91,8 @@ let userData = ref("");
 
 
 async function getClubs() {
-  await axios.get("https://localhost:7210/api/clubs").then(function (res) {
+  let acsecc = localStorage.getItem("accessToken");
+  await axios.get("https://localhost:7210/api/clubs/get-my-clubs", {headers: { Authorization: "Bearer " + acsecc }}).then(function (res) {
     console.log(res);
     return (clubs.value = res.data);
   });

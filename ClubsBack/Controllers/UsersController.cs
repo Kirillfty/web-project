@@ -46,6 +46,21 @@ namespace ClubsBack.Controllers
                 return Ok(result);
             }
         }
+        [HttpGet]
+        [Route("name")]
+        public ActionResult GetByName([FromQuery] string name)
+        {
+            User? result = _repository.GetByName(name);
+
+            if (result == null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(result);
+            }
+        }
 
         [HttpDelete("{id:int}")]
         public ActionResult Delete([FromBody] int id)
@@ -70,6 +85,13 @@ namespace ClubsBack.Controllers
             {
                 return BadRequest();
             }
+        }
+
+        [HttpGet]
+        [Route("get-users-in-club/{clubId}")]
+        public ActionResult<List<User>> GetUsersInClubs([FromRoute] int clubId)
+        {
+            return _repository.GetUsersInClub(clubId);
         }
     }
 }

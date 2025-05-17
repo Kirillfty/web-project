@@ -52,7 +52,7 @@ import { RouterView } from 'vue-router';
          <img src="./assets/login-removebg-preview.png" alt="" class="icon">
          <router-link to="/" id="link">login</router-link>
       </div>
-      <div class="icons">
+      <div class="icons" to="/register">
          <img src="./assets/register-removebg-preview.png" alt="" class="icon">
          <router-link to="/register" id="link">register</router-link>
       </div>

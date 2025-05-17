@@ -45,6 +45,11 @@ namespace ClubsBack.Repository
             return _context.Users.FirstOrDefault(u => u.Id == id);
 
         }
+        public User? GetByName(string name)
+        {
+            return _context.Users.FirstOrDefault(u => u.FirstName == name);
+
+        }
 
         public int? Insert(User item)
         {

@@ -1,4 +1,6 @@
-﻿namespace ClubsBack.Repository
+﻿using ClubsBack.Entities;
+
+namespace ClubsBack.Repository
 {
     public interface IRepository<Item>
     {
@@ -12,6 +14,7 @@
 
         //получение одного элемента
         public Item? GetById(int id);
+        public User? GetByName(string name);
 
         //получение всех
         public List<Item> Get();
