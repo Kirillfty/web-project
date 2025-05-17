@@ -1,22 +1,15 @@
 meta {
-  name: Create
+  name: Get My Clubs
   type: http
-  seq: 1
+  seq: 4
 }
 
-post {
-  url: {{base}}/clubs/create
-  body: json
+get {
+  url: {{base}}/clubs/get-my-clubs
+  body: none
   auth: bearer
 }
 
 auth:bearer {
   token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJ1c2VyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6IjEiLCJleHAiOjE3NDc0ODM1MjgsImlzcyI6IndlYl9hcGkiLCJhdWQiOiJ3ZWJfc2VydmljZSJ9._VSDUfNR5HMhp9JoFSTgKbhIqccsLLWvjDXmo22DO0U
-}
-
-body:json {
-  {
-    "Title": "Test1",
-    "Description": "Testov"
-  }
 }

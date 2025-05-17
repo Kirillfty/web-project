@@ -134,7 +134,10 @@ namespace ClubsBack.Repository
         
         public List<Club> GetUserClub(int userId)
         {
-           return _context.ClubsUsers.Where(u => u.Id == userId && u.IsAdmin == true).Select(club => club.Club).ToList();
+           return _context.ClubsUsers
+               .Where(u => u.UserId == userId && u.IsAdmin == true)
+               .Select(club => club.Club)
+               .ToList();
         }
     }
 }

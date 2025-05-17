@@ -122,7 +122,7 @@ namespace ClubsBack.Controllers
 
         [HttpGet("get-my-clubs")]
         [Authorize]
-        public ActionResult<List<Club>> GetUserClub() {
+        public ActionResult<List<Club>> GetUserClubs() {
 
             var userId = HttpContext.User.Identity.Name;
             if (int.TryParse(userId, out int resultId) == false) 
