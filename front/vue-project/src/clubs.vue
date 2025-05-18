@@ -2,7 +2,7 @@
     <div class="clubs-container">
       <div id="card" v-for="club in clubs" :key="club" class="clubs">
         <p class="heading">{{club.title}}</p>
-        <p>{{club.description}}</p>
+        <p>{{club.description.substring(1,16)}}</p>
         <button class="btn" @click="GetClubId(club.id)">Посмотреть</button>
       </div>
     </div>

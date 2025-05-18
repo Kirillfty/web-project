@@ -15,12 +15,22 @@
     </div>
     <section>
       <section class="club-description">
-          <p>
-            {{clubData.description}}
-          </p>
+        <div>
+          <p>{{clubData.description}}</p>
+        </div>
+        <div>
+          <div class="container-users" v-for="users in usersInClub" :key="users">
+            <div class="user-info">
+                <img src="./assets/user.png" alt="" id="user-logo">
+                <p>{{users.firstName}}</p>
+                <p>{{users.lastName}}</p>
+                <p>{{users.nickName}}</p>
+            </div>
+          </div>
+        </div>
       </section>
       <section class="sign_up_club_form">
-        <button class="submitb">Вступить</button>
+        <button class="submit">Вступить</button>
       </section>
     </section>
 </template>
@@ -30,6 +40,16 @@ import { ref, onMounted } from 'vue'
 import axios from 'axios'
 let clubData = ref('');
 let clubId = ref('');
+let usersInClub = ref('');
+async function GetUsersInClub(){
+  clubId.value = localStorage.getItem('clubId');
+  axios.get('https://localhost:7210/api/users/get-users-in-club/'+clubId.value)
+  .then(function(res){
+    console.log(res.data)
+    return usersInClub.value = res.data;
+  })
+}
+
 async function getDataClub() {
     clubId.value = localStorage.getItem('clubId');
     console.log(clubId.value);
@@ -42,7 +62,20 @@ async function getDataClub() {
 }
 onMounted(async () => {
     await getDataClub();
+    await GetUsersInClub();
 })
 </script>
 
-<style></style>
+<style>
+.club-description{
+  display:flex;
+  justify-content: space-around;
+}
+.user-info{
+  width: 100%;
+  background-color: rgb(70, 70, 70);
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+}
+</style>

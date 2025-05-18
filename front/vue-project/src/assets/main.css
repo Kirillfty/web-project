@@ -15,7 +15,10 @@ p{
 body{
     background-color:#121212;
 }
-
+#user-logo{
+  width:10vh;
+  height:10vh;
+}
 
 
 .container{
