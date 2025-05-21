@@ -28,12 +28,21 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
+let userData = ref('');
 let clubData = ref('');
 let clubId = ref('');
+async function getUsersInClub(){
+  clubId.value = localStorage.getItem('clubId');
+  axios.get('https://localhost:7210/api/users/get-users-in-club/'+clubId.value)
+  .then(function(res){
+      console.log('данные пользователей клуба:');
+      console.log(res.data);
+      return userData.value = res.data;
+  })
+}
 async function getDataClub() {
     clubId.value = localStorage.getItem('clubId');
     console.log(clubId.value);
-
     axios.get('https://localhost:7210/api/clubs/'+clubId.value)
         .then(function (res) {
             console.log(res.data);
@@ -42,6 +51,7 @@ async function getDataClub() {
 }
 onMounted(async () => {
     await getDataClub();
+    await getUsersInClub();
 })
 </script>
 
