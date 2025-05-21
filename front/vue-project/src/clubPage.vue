@@ -8,7 +8,7 @@
           <p id="info">id: {{ clubData.id }}</p>
           <br />
           <p id="info">название: {{ clubData.title }}</p><br>
-          <p id="nick">создатель: пока не сделал</p>
+          <p id="nick">создатель: {{userData.firstName}}</p>
           <br>
         </div>
       </div>
@@ -20,9 +20,17 @@
           </p>
       </section>
       <section class="sign_up_club_form">
-        <button class="submitb">Вступить</button>
+        <button class="submitb" @click="EnterClub()">Вступить</button>
       </section>
     </section>
+    <div class="users-cont" v-for="users in userData" :key="users">
+        <div>
+          <hr>
+          <p>{{users.firstName}}</p>
+          <p>{{users.nickName}}</p>
+          <hr>
+        </div>
+    </div>
 </template>
 
 <script setup>
@@ -49,10 +57,26 @@ async function getDataClub() {
             return clubData.value = res.data;
         })
 }
+
+async function EnterClub(){
+  let acsecc = localStorage.getItem("accessToken");
+  axios.post('https://localhost:7210/api/clubs/enter-club/'+clubId,{headers: { Authorization: "Bearer " + acsecc }})
+  .then(function (res){
+    if(res){
+      alert("вы вступили в клуб");
+      getUsersInClub();
+    }
+  })
+
+}
 onMounted(async () => {
     await getDataClub();
     await getUsersInClub();
 })
 </script>
 
-<style></style>
+<style scoped>
+hr{
+  color:aliceblue;
+}
+</style>
