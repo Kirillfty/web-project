@@ -8,7 +8,7 @@
           <p id="info">id: {{ clubData.id }}</p>
           <br />
           <p id="info">название: {{ clubData.title }}</p><br>
-          <p id="nick">создатель: пока не сделал</p>
+          <p id="nick">создатель: {{userData.firstName}}</p>
           <br>
         </div>
       </div>
@@ -31,13 +31,23 @@
       </section>
       <section class="sign_up_club_form">
         <button class="submit">Вступить</button>
+        <button class="submitb" @click="EnterClub()">Вступить</button>
       </section>
     </section>
+    <div class="users-cont" v-for="users in userData" :key="users">
+        <div>
+          <hr>
+          <p>{{users.firstName}}</p>
+          <p>{{users.nickName}}</p>
+          <hr>
+        </div>
+    </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
+let userData = ref('');
 let clubData = ref('');
 let clubId = ref('');
 let usersInClub = ref('');
@@ -50,15 +60,35 @@ async function GetUsersInClub(){
   })
 }
 
+async function getUsersInClub(){
+  clubId.value = localStorage.getItem('clubId');
+  axios.get('https://localhost:7210/api/users/get-users-in-club/'+clubId.value)
+  .then(function(res){
+      console.log('данные пользователей клуба:');
+      console.log(res.data);
+      return userData.value = res.data;
+  })
+}
 async function getDataClub() {
     clubId.value = localStorage.getItem('clubId');
     console.log(clubId.value);
-
     axios.get('https://localhost:7210/api/clubs/'+clubId.value)
         .then(function (res) {
             console.log(res.data);
             return clubData.value = res.data;
         })
+}
+
+async function EnterClub(){
+  let acsecc = localStorage.getItem("accessToken");
+  await axios.post('https://localhost:7210/api/clubs/enter-club/'+clubId.value,{headers: { Authorization: "Bearer " + acsecc }})
+  .then(function (res){
+    if(res){
+      alert("вы вступили в клуб");
+      getUsersInClub();
+    }
+  })
+
 }
 onMounted(async () => {
     await getDataClub();
@@ -66,16 +96,10 @@ onMounted(async () => {
 })
 </script>
 
-<style>
-.club-description{
-  display:flex;
-  justify-content: space-around;
-}
-.user-info{
-  width: 100%;
-  background-color: rgb(70, 70, 70);
-  display:flex;
-  justify-content: space-around;
-  align-items: center;
+
+
+<style scoped>
+hr{
+  color:aliceblue;
 }
 </style>
