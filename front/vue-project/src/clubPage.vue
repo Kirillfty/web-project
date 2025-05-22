@@ -20,6 +20,7 @@
         </div>
         <div>
           <div class="container-users" v-for="users in usersInClub" :key="users">
+            <p>В клубе состоят:</p>
             <div class="user-info">
                 <img src="./assets/user.png" alt="" id="user-logo">
                 <p>{{users.firstName}}</p>
@@ -30,18 +31,9 @@
         </div>
       </section>
       <section class="sign_up_club_form">
-        <button class="submit">Вступить</button>
-        <button class="submitb" @click="EnterClub()">Вступить</button>
+        <button class="submit" @click="EnterClub()">Вступить</button>
       </section>
     </section>
-    <div class="users-cont" v-for="users in userData" :key="users">
-        <div>
-          <hr>
-          <p>{{users.firstName}}</p>
-          <p>{{users.nickName}}</p>
-          <hr>
-        </div>
-    </div>
 </template>
 
 <script setup>
@@ -60,15 +52,7 @@ async function GetUsersInClub(){
   })
 }
 
-async function getUsersInClub(){
-  clubId.value = localStorage.getItem('clubId');
-  axios.get('https://localhost:7210/api/users/get-users-in-club/'+clubId.value)
-  .then(function(res){
-      console.log('данные пользователей клуба:');
-      console.log(res.data);
-      return userData.value = res.data;
-  })
-}
+
 async function getDataClub() {
     clubId.value = localStorage.getItem('clubId');
     console.log(clubId.value);
@@ -80,12 +64,13 @@ async function getDataClub() {
 }
 
 async function EnterClub(){
+  clubId.value = localStorage.getItem('clubId');
   let acsecc = localStorage.getItem("accessToken");
   await axios.post('https://localhost:7210/api/clubs/enter-club/'+clubId.value,{headers: { Authorization: "Bearer " + acsecc }})
   .then(function (res){
     if(res){
       alert("вы вступили в клуб");
-      getUsersInClub();
+      GetUsersInClub();
     }
   })
 
@@ -101,5 +86,12 @@ onMounted(async () => {
 <style scoped>
 hr{
   color:aliceblue;
+}
+
+.user-info{
+  width:40%;
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
 }
 </style>
