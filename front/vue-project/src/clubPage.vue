@@ -60,7 +60,7 @@ async function getDataClub() {
 
 async function EnterClub(){
   let acsecc = localStorage.getItem("accessToken");
-  axios.post('https://localhost:7210/api/clubs/enter-club/'+clubId,{headers: { Authorization: "Bearer " + acsecc }})
+  await axios.post('https://localhost:7210/api/clubs/enter-club/'+clubId.value,{headers: { Authorization: "Bearer " + acsecc }})
   .then(function (res){
     if(res){
       alert("вы вступили в клуб");

@@ -38,7 +38,7 @@ function Login() {
 			localStorage.setItem("accessToken", res.data.accessToken);
 			localStorage.setItem("refreshToken", res.data.refreshToken);
 			console.log("ok");
-			router.push("/clubs");
+			router.push("/user");
 		});
 }
 let router = useRouter();
