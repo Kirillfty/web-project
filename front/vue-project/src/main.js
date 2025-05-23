@@ -10,12 +10,14 @@ import clubs from './clubs.vue'
 import userpage from './usersPage.vue'
 import search from './Search.vue'
 import clubPage from './clubPage.vue'
+import userhome from './UserHome.vue'
 const routes = [
   { path: '/', component: login },
   { path: '/clubs', component: clubs },
   { path: '/register', component: register },
   { path: '/user', component: userpage },
   { path: '/search', component: search },
+  { path: '/home', component: userhome },
   { path: '/club-page', component: clubPage }
 ]
 const router = createRouter({

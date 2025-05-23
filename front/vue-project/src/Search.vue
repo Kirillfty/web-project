@@ -5,7 +5,7 @@
       <input type="text" class="input" v-model="user" />
       <button class="btn" @click="SearchUser()">Найти</button>
       <div class="clubs-container">
-        <div class="clubs" id="card">
+        <div class="clubs" id="card" @click="GoTo()">
           <img src="./assets/user.png" alt="" class="logo">
           <div>
             <p class="heading">{{userData.firstName}}</p>
@@ -20,6 +20,8 @@
 <script setup>
 import {ref} from 'vue'
 import axios from 'axios'
+import {useRouter} from 'vue-router'
+let router = useRouter();
 let user = ref('');
 let userData = ref('');
 function SearchUser(){
@@ -31,5 +33,9 @@ function SearchUser(){
         
         return userData;
     })
+}
+
+function GoTo(){
+  router.push('/home');
 }
 </script>
