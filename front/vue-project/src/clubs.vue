@@ -13,6 +13,10 @@
   height:10vh;
   border-radius:50%;
 }
+.clubs-container{
+  width:99%;
+  padding-bottom: 10%;
+}
 .club{
   background-color: rgb(73, 69, 69);
   width:40%;
@@ -25,7 +29,7 @@
   border-radius: 5px;
 }
 .clubs{
-  width:100%;
+  width:90%;
   display: flex;
   justify-content: center;
   align-items: center;

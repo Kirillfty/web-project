@@ -33,16 +33,19 @@
       </div>
 
       <div class="clubs-container-user">
-      <div id="card" v-for="club in clubs" :key="club" class="clubs">
-        <p class="heading">{{club.title}}</p>
-        <p>{{club.description}}</p>
-        <button class="btn" @click="Delete(club.id)">Delete</button>
-      </div>
+        <div id="card" v-for="club in clubs" :key="club" class="clubs">
+          <p class="heading">{{club.title}}</p>
+          <p>{{club.description}}</p>
+          <button class="btn" @click="Delete(club.id)">Delete</button>
+        </div>
     </div>
     </div>
   </header>
 </template>
 <style>
+.clubs-container-user{
+  padding-bottom: 10%;
+}
 .logo{
     width:15vh;
     height:15vh;
