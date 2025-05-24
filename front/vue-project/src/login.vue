@@ -13,7 +13,7 @@
 		</label>
 		<button class="submit" @click="Login()">Submit</button>
 		<p class="signin" @click="GoTo()">
-			Already have an acount ? <a href="#">Signin</a>
+			Already dont have an acount ? <a href="#">Registration</a>
 		</p>
 	</div>
 </template>
