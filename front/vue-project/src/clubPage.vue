@@ -22,7 +22,7 @@
     <div>
       <p>В клубе состоят:</p>
       <div class="container-users" v-for="users in usersInClub" :key="users">
-        <div class="user-info">
+        <div class="user-info" @click="GoToUserPage(users.id)">
           <img src="./assets/user.png" alt="" id="user-logo">
           <div class="user-text">
             <p>{{ users.firstName }}</p>
@@ -41,9 +41,9 @@
 
 <script setup>
 import {ref, onMounted} from 'vue'
+import {useRouter} from 'vue-router'
 import axios from 'axios'
-
-let userData = ref('');
+let router = useRouter();
 let clubData = ref('');
 let clubId = ref('');
 let usersInClub = ref('');
@@ -90,6 +90,11 @@ async function ExitClub() {
           GetUsersInClub();
         }
       })
+}
+
+function GoToUserPage(id){
+  localStorage.setItem('userId',id);
+  router.push('/home');
 }
 
 onMounted(async () => {
