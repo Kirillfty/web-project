@@ -1,4 +1,5 @@
 ﻿using ClubsBack.Entities;
+using Microsoft.AspNetCore.Mvc;
 namespace ClubsBack.Repository
 {
     public interface IClubsRepository
@@ -15,5 +16,6 @@ namespace ClubsBack.Repository
         public bool ExitClub(int clubId, int userId);
         public bool Delete(int id);
         public List<Club> GetUserClub(int userId);
+        public List<Club> GetUserClubPage(int resultId);
     }
 }

@@ -133,5 +133,19 @@ namespace ClubsBack.Controllers
 
             
         }
+        [HttpGet("get-my-clubs-page")]
+        [Authorize]
+        public ActionResult<List<Club>> GetUserClubsPage()
+        {
+
+            var userId = HttpContext.User.Identity.Name;
+            if (int.TryParse(userId, out int resultId) == false)
+                return BadRequest();
+
+            return _repository.GetUserClubPage(resultId);
+
+
+
+        }
     }
 }

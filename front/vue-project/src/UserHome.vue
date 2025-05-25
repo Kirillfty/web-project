@@ -5,6 +5,12 @@
         <p>{{userData.lastName}}</p>
         <p>{{userData.nickName}}</p>
     </div>
+    <div class="clubs-container-user">
+        <div id="card" v-for="club in clubs" :key="club" class="clubs">
+          <p class="heading">{{club.title}}</p>
+          <p>{{club.description}}</p>
+        </div>
+    </div>
 </template>
 
 
@@ -13,8 +19,15 @@ import {ref,onMounted} from 'vue'
 import axios from 'axios'
 let userId = localStorage.getItem('userId');
 let userData = ref('');
+let clubs = ref('');
 
-
+async function getClubs() {
+  let acsecc = localStorage.getItem("accessToken");
+  await axios.get("https://localhost:7210/api/clubs/get-my-clubs-page", {headers: { Authorization: "Bearer " + acsecc }}).then(function (res) {
+    console.log(res);
+    return clubs.value = res.data;
+  });
+}
 async function getUser() {
   await axios
     .get("https://localhost:7210/api/users/" + userId)
@@ -27,6 +40,7 @@ async function getUser() {
 }
 onMounted(async function(){
     await getUser();
+    await getClubs();
 })
 </script>
 

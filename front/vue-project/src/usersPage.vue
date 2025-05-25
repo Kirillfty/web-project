@@ -38,7 +38,7 @@
           <p>{{club.description}}</p>
           <button class="btn" @click="Delete(club.id)">Delete</button>
         </div>
-    </div>
+     </div>
     </div>
   </header>
 </template>
