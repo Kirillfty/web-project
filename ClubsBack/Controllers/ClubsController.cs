@@ -135,7 +135,7 @@ namespace ClubsBack.Controllers
         }
         [HttpGet("get-my-clubs-page")]
         [Authorize]
-        public ActionResult<List<Club>> GetUserClubsPage()
+        public ActionResult<List<Club>> GetUserClubsPage(int id)
         {
 
             var userId = HttpContext.User.Identity.Name;
