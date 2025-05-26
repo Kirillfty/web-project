@@ -23,7 +23,7 @@ let clubs = ref('');
 
 async function getClubs() {
   let acsecc = localStorage.getItem("accessToken");
-  await axios.get("https://localhost:7210/api/clubs/get-my-clubs-page", {headers: { Authorization: "Bearer " + acsecc }}).then(function (res) {
+  await axios.get("https://localhost:7210/api/clubs/get-my-clubs-page/"+userId).then(function (res) {
     console.log(res);
     return clubs.value = res.data;
   });
