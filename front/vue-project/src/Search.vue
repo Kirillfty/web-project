@@ -5,7 +5,7 @@
       <input type="text" class="input" v-model="user" />
       <button class="btn" @click="SearchUser()">Найти</button>
       <div class="clubs-container">
-        <div class="clubs" id="card" @click="GoToUserPage(userData.id)">
+        <div class="clubs" id="card" @click="GoToUserPage(userData.id)" v-show="userData.length != ' '">
           <img src="./assets/user.png" alt="" class="logo">
           <div>
             <p class="heading">{{userData.firstName}}</p>

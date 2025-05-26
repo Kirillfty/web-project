@@ -62,7 +62,7 @@ namespace ClubsBack.Controllers
             }
         }
 
-        [HttpDelete("{id:int}")]
+        [HttpDelete("delete/{id:int}")]
         public ActionResult Delete([FromBody] int id)
         {
             if (_repository.Delete(id) == true)

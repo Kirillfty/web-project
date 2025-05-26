@@ -1,5 +1,8 @@
 <template>
-    <div class="clubs-container">
+    <div class="error-message" v-show="!clubs?.length">
+      <p>Клубов нету пока что.....</p>
+    </div>
+    <div class="clubs-container" v-show="clubs?.length">
       <div id="card" v-for="club in clubs" :key="club" class="clubs">
         <p class="heading">{{club.title}}</p>
         <p>{{club.description.substring(0,17)}}</p>
