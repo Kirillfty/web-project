@@ -1,4 +1,10 @@
 <template>
+    <header class="container">
+        <div class="header-text">
+            <h1 id="header-h1">На странице клубов</h1>
+            <p id="header-p">Вы можете посмотреть клубы</p>
+        </div>
+    </header>
     <div class="error-message" v-show="!clubs?.length">
       <p>Клубов нету пока что.....</p>
     </div>
@@ -11,6 +17,7 @@
     </div>
 </template>
 <style scoped>
+
 .logo-id{
   width:10vh;
   height:10vh;
