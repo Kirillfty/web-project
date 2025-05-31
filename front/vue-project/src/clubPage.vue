@@ -43,18 +43,18 @@
 
 <script setup>
 import {ref, onMounted} from 'vue'
-import {useRouter} from 'vue-router'
+import {useRouter,useRoute} from 'vue-router'
 import axios from 'axios'
 import Layout from './components/layout.vue'
 
+let route = useRoute();
+let clubId = route.params.id;
 let router = useRouter();
 let clubData = ref('');
-let clubId = ref('');
 let usersInClub = ref('');
 
 async function GetUsersInClub() {
-  clubId.value = localStorage.getItem('clubId');
-  axios.get('https://localhost:7210/api/users/get-users-in-club/' + clubId.value)
+  axios.get('https://localhost:7210/api/users/get-users-in-club/' + clubId)
       .then(function (res) {
         console.log(res.data)
         return usersInClub.value = res.data;
@@ -63,9 +63,9 @@ async function GetUsersInClub() {
 
 
 async function getDataClub() {
-  clubId.value = localStorage.getItem('clubId');
-  console.log(clubId.value);
-  axios.get('https://localhost:7210/api/clubs/' + clubId.value)
+
+  console.log(clubId);
+  axios.get('https://localhost:7210/api/clubs/' + clubId)
       .then(function (res) {
         console.log(res.data);
         return clubData.value = res.data;
@@ -73,9 +73,8 @@ async function getDataClub() {
 }
 
 async function EnterClub() {
-  clubId.value = localStorage.getItem('clubId');
   let acsecc = localStorage.getItem("accessToken");
-  await axios.post('https://localhost:7210/api/clubs/enter-club/' + clubId.value, null, {headers: {Authorization: "Bearer " + acsecc}})
+  await axios.post('https://localhost:7210/api/clubs/enter-club/' + clubId, null, {headers: {Authorization: "Bearer " + acsecc}})
       .then(function (res) {
         if (res) {
           alert("вы вступили в клуб");
@@ -85,9 +84,9 @@ async function EnterClub() {
 }
 
 async function ExitClub() {
-  clubId.value = localStorage.getItem('clubId');
+
   let acsecc = localStorage.getItem("accessToken");
-  await axios.post('https://localhost:7210/api/clubs/exit-club/' + clubId.value, null, {headers: {Authorization: "Bearer " + acsecc}})
+  await axios.post('https://localhost:7210/api/clubs/exit-club/' + clubId, null, {headers: {Authorization: "Bearer " + acsecc}})
       .then(function (res) {
         if (res) {
           alert("вы вышли из клуба");
@@ -97,8 +96,7 @@ async function ExitClub() {
 }
 
 function GoToUserPage(id) {
-  localStorage.setItem('userId', id);
-  router.push('/home');
+  router.push('/home/'+id);
 }
 
 onMounted(async () => {

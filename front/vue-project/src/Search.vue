@@ -13,9 +13,7 @@
             <p>{{userData.nickName}}</p>
           </div>
         </div>
-        <!-- <div v-else>
-          <h1>this user is not found</h1>
-        </div> -->
+
       </div>
     </div>
   </div>
@@ -42,7 +40,6 @@ function SearchUser(){
 }
 
 function GoToUserPage(id){
-  localStorage.setItem('userId',id);
-  router.push('/home');
+  router.push('/home/'+id);
 }
 </script>

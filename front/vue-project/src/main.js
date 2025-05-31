@@ -18,8 +18,8 @@ const routes = [
   { path: '/register', component: register },
   { path: '/user', component: userpage },
   { path: '/search', component: search },
-  { path: '/home', component: userhome },
-  { path: '/club-page', component: clubPage }
+  { path: '/home/:id', component: userhome },
+  { path: '/club-page/:id', component: clubPage }
 ]
 const router = createRouter({
   history: createWebHistory(),

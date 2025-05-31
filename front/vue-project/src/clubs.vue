@@ -9,9 +9,10 @@
       <p>Клубов нету пока что.....</p>
     </div>
     <div class="clubs-container" v-show="clubs?.length">
-      <div id="card" v-for="club in clubs" :key="club" class="clubs">
+      <div id="card" v-for="club in clubs" :key="club.id" class="clubs">
         <p class="heading">{{club.title}}</p>
         <p>{{club.description.substring(0,17)}}</p>
+
         <button class="btn" @click="GetClubId(club.id)">Посмотреть</button>
       </div>
     </div>
@@ -64,8 +65,7 @@ async function fetchData()
 }
 function GetClubId(id){
     console.log(id);
-    localStorage.setItem('clubId',JSON.parse(id));
-    router.push('/club-page');
+    router.push('/club-page/'+id);
 }
 onMounted(async()=>{
   await fetchData();

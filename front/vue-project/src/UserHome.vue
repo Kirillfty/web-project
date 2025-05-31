@@ -18,8 +18,10 @@
 <script setup>
 import Layout from './components/layout.vue'
 import {ref,onMounted} from 'vue'
+import {useRoute} from "vue-router";
 import axios from 'axios'
-let userId = localStorage.getItem('userId');
+let route = useRoute()
+let userId = route.params.id;
 let userData = ref('');
 let clubs = ref('');
 
