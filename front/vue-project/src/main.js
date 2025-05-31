@@ -13,7 +13,7 @@ import search from './Search.vue'
 import clubPage from './clubPage.vue'
 import userhome from './UserHome.vue'
 const routes = [
-  { path: '/', component: login },
+  { path: '/', component: login,meta: { noLayout: true }},
   { path: '/clubs', component: clubs },
   { path: '/register', component: register },
   { path: '/user', component: userpage },

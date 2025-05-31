@@ -13,6 +13,7 @@
         </div>
         <p id="nick">{{ userData.nickName }}</p>
       </div>
+      <p id="exit__button" @click="ExitAccount()">exit</p>
     </div>
     <p align="center">Создай клуб</p>
     <div>
@@ -43,6 +44,9 @@
   </header>
 </template>
 <style>
+#exit__button{
+  margin-right: 3%;
+}
 .clubs-container-user{
   padding-bottom: 10%;
 }
@@ -92,6 +96,10 @@ let description = ref("");
 let result = ref("");
 let userData = ref("");
 
+function ExitAccount(){
+  localStorage.removeItem('accessToken');
+  location.reload();
+}
 
 async function getClubs() {
   let acsecc = localStorage.getItem("accessToken");
