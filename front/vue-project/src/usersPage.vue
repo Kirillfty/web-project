@@ -30,7 +30,7 @@
           class="input"
           placeholder="краткое описание"
         />
-        <button @click="Post()" class="btn">click</button>
+        <button @click="Post()" class="btn">Создать</button>
       </div>
 
       <div class="clubs-container-user">
@@ -41,6 +41,7 @@
         </div>
      </div>
     </div>
+    <layout/>
   </header>
 </template>
 <style>
@@ -86,6 +87,7 @@
 }
 </style>
 <script setup>
+import Layout from './components/layout.vue'
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";

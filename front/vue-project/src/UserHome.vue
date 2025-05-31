@@ -11,10 +11,12 @@
           <p>{{club.description}}</p>
         </div>
     </div>
+  <layout/>
 </template>
 
 
 <script setup>
+import Layout from './components/layout.vue'
 import {ref,onMounted} from 'vue'
 import axios from 'axios'
 let userId = localStorage.getItem('userId');

@@ -15,6 +15,7 @@
         <button class="btn" @click="GetClubId(club.id)">Посмотреть</button>
       </div>
     </div>
+  <layout/>
 </template>
 <style scoped>
 
@@ -47,6 +48,7 @@
 }
 </style>
 <script setup>
+import Layout from './components/layout.vue'
 import {ref,onMounted} from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'

@@ -19,8 +19,10 @@
       </div>
     </div>
   </div>
+  <layout/>
 </template>
 <script setup>
+import Layout from './components/layout.vue'
 import {ref} from 'vue'
 import axios from 'axios'
 import {useRouter} from 'vue-router'

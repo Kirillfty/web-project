@@ -15,6 +15,8 @@
 		<p class="signin" @click="GoTo()">
 			Already dont have an acount ? <a href="#">Registration</a>
 		</p>
+    <p v-if="error != null">{{error}}</p>
+    <p v-if="error == 400">такого пользователя нету</p>
 	</div>
 </template>
 
@@ -26,25 +28,34 @@ import { ref } from "vue";
 import axios from "axios";
 
 let Account = ref({
-	nickName: null,
-	password: null,
+	nickName: '',
+	password: '',
 });
-function Login() {
-	axios
-		.post("https://localhost:7210/api/auth/login", {
-			nickName: Account.value.nickName,
-			password: Account.value.password,
-		})
-		.then(function (res) {
-			localStorage.clear();
-			localStorage.setItem("accessToken", res.data.accessToken);
-			localStorage.setItem("refreshToken", res.data.refreshToken);
-			console.log("ok");
-			router.push("/user");
-		});
+
+let error = ref(null);
+ async function Login() {
+  if(Account.value.nickName.trim() == '' || Account.value.password.trim() == ''){
+    error.value = 'вы ввели неверные данные'
+  }
+  else{
+   await axios
+        .post("https://localhost:7210/api/auth/login", {
+          nickName: Account.value.nickName,
+          password: Account.value.password,
+        })
+        .then(function (res) {
+          localStorage.clear();
+          localStorage.setItem("accessToken", res.data.accessToken);
+          localStorage.setItem("refreshToken", res.data.refreshToken);
+          console.log("ok");
+          router.push("/user");
+        });
+  }
+
 }
 let router = useRouter();
 function GoTo() {
 	router.push("/register");
 }
 </script>
+

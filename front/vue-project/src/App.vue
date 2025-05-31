@@ -31,33 +31,9 @@ import { RouterView } from 'vue-router';
 </style>
 
 <template>
- <div class="container-a">
    <div>
       <RouterView />
    </div>
-   <aside class="aside">
-      <div class="icons">
-         <img src="./assets/clubs.png" alt="" class="icon">
-         <router-link to="/clubs" id="link">Clubs</router-link>
-      </div>
-      <div class="icons">
-         <img src="./assets/user.png" alt="" class="icon">
-         <router-link to="/user" id="link">User</router-link>
-      </div>
-      <div class="icons">
-         <img src="./assets/search.png" alt="" class="icon">
-         <router-link to="/search" id="link">search</router-link>
-      </div>
-      <div class="icons">
-         <img src="./assets/login-removebg-preview.png" alt="" class="icon">
-         <router-link to="/" id="link">login</router-link>
-      </div>
-      <div class="icons" to="/register">
-         <img src="./assets/register-removebg-preview.png" alt="" class="icon">
-         <router-link to="/register" id="link">register</router-link>
-      </div>
-   </aside>
- </div>
 </template>
 
 
